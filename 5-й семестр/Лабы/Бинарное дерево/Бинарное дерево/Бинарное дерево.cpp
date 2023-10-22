@@ -87,6 +87,7 @@ void TreeLRN(Node* root) {
     cout << root->value << " ";
 }
 
+
 // Основная функция
 int main() {
     // Создаем корень дерева с начальным значением

@@ -1,119 +1,116 @@
-﻿#include <iostream>
+﻿// @author Rychkov R.V.
+#include <iostream>
+#include "ClassTreeNode.h"
 
 using namespace std;
 
-//
-// Структура узла бинарного дерева
-struct Node {
-    int value;
-    Node* left;
-    Node* right;
+// Реализация конструктора для узла бинарного дерева
+TreeNode::TreeNode(int value) {
+    this->value = value;
+    this->left = nullptr;
+    this->right = nullptr;
+}
 
-    // Конструктор узла
-    Node(int value) {
-        this->value = value;
-        this->left = nullptr;
-        this->right = nullptr;
+// Реализация конструктора для бинарного дерева
+Tree::Tree() {
+    root = nullptr; // Изначально корень дерева устанавливается как nullptr
+}
+
+// Реализация деструктора для бинарного дерева
+Tree::~Tree() {
+    destroyTree(root); // При удалении объекта дерева также удаляется само дерево
+}
+
+// Рекурсивная функция для удаления дерева
+void Tree::destroyTree(TreeNode* node) {
+    if (node) {
+        destroyTree(node->left); // Удаляем левое поддерево
+        destroyTree(node->right); // Удаляем правое поддерево
+        delete node; // Удаляем узел
     }
-};
+}
 
-// Функция добавления элемента в дерево
-Node* add(Node* root, int value) {
-    // Если дерево пустое, создаем новый корень
-    if (root == nullptr) {
-        return new Node(value);
+// Публичный метод для добавления элемента в дерево
+void Tree::add(int value) {
+    add(root, value);
+}
+
+// Рекурсивная функция для добавления элемента в дерево
+void Tree::add(TreeNode*& node, int value) {
+    if (node == nullptr) {
+        node = new TreeNode(value); // Если узел пустой, создаем новый узел с заданным значением
     }
-
-    // Если значение элемента меньше значения текущего узла, добавляем элемент в левое поддерево
-    if (value < root->value) {
-        root->left = add(root->left, value);
+    else if (value < node->value) {
+        add(node->left, value); // Если значение меньше текущего узла, рекурсивно добавляем в левое поддерево
     }
     else {
-        // Если значение элемента больше значения текущего узла, добавляем элемент в правое поддерево
-        root->right = add(root->right, value);
+        add(node->right, value); // Иначе рекурсивно добавляем в правое поддерево
     }
-
-    return root; // Возвращаем обновленный корень
 }
 
-// Функция обхода дерева в порядке LNR
-void TreeLNR(Node* root) {
-    // Если дерево пустое, ничего не делаем
-    if (root == nullptr) {
-        return;
-    }
-
-    // Обходим левое поддерево
-    TreeLNR(root->left);
-
-    // Выводим значение текущего узла
-    cout << root->value << " ";
-
-    // Обходим правое поддерево
-    TreeLNR(root->right);
+// Публичный метод для вывода дерева в порядке LNR (in-order)
+void Tree::printInOrder() {
+    printInOrder(root);
+    cout << std::endl;
 }
 
-// Функция обхода дерева в порядке NLR
-void TreeNLR(Node* root) {
-    // Если дерево пустое, ничего не делаем
-    if (root == nullptr) {
-        return;
+// Рекурсивная функция для вывода дерева в порядке LNR (in-order)
+void Tree::printInOrder(TreeNode* node) {
+    if (node) {
+        printInOrder(node->left); // Сначала обходим левое поддерево
+        cout << node->value << " "; // Затем выводим значение текущего узла
+        printInOrder(node->right); // Затем обходим правое поддерево
     }
-
-    // Выводим значение текущего узла
-    cout << root->value << " ";
-
-    // Обходим левое поддерево
-    TreeNLR(root->left);
-
-    // Обходим правое поддерево
-    TreeNLR(root->right);
 }
 
-// Функция обхода дерева в порядке LRN
-void TreeLRN(Node* root) {
-    // Если дерево пустое, ничего не делаем
-    if (root == nullptr) {
-        return;
-    }
-
-    // Обходим левое поддерево
-    TreeLRN(root->left);
-
-    // Обходим правое поддерево
-    TreeLRN(root->right);
-
-    // Выводим значение текущего узла
-    cout << root->value << " ";
+// Публичный метод для вывода дерева в порядке NLR (pre-order)
+void Tree::printPreOrder() {
+    printPreOrder(root);
+    cout << std::endl;
 }
 
+// Рекурсивная функция для вывода дерева в порядке NLR (pre-order)
+void Tree::printPreOrder(TreeNode* node) {
+    if (node) {
+        cout << node->value << " "; // Сначала выводим значение текущего узла
+        printPreOrder(node->left); // Затем обходим левое поддерево
+        printPreOrder(node->right); // Затем обходим правое поддерево
+    }
+}
 
-// Основная функция
+// Публичный метод для вывода дерева в порядке LRN (post-order)
+void Tree::printPostOrder() {
+    printPostOrder(root);
+    cout << std::endl;
+}
+
+// Рекурсивная функция для вывода дерева в порядке LRN (post-order)
+void Tree::printPostOrder(TreeNode* node) {
+    if (node) {
+        printPostOrder(node->left); // Сначала обходим левое поддерево
+        printPostOrder(node->right); // Затем обходим правое поддерево
+        cout << node->value << " "; // Затем выводим значение текущего узла
+    }
+}
+
 int main() {
-    // Создаем корень дерева с начальным значением
-    Node* root = new Node(10);
+    Tree tree;
 
-    // Добавляем элементы в дерево
-    add(root, 5);
-    add(root, 15);
-    add(root, 2);
-    add(root, 7);
-    add(root, 12);
+    tree.add(10);
+    tree.add(5);
+    tree.add(15);
+    tree.add(2);
+    tree.add(7);
+    tree.add(12);
 
-    // Выводим дерево в порядке вставки
     cout << "LNR: ";
-    TreeLNR(root);
-    cout << endl;
+    tree.printInOrder(); // Выводим дерево в порядке вставки
 
-    // Выводим дерево в порядке префикса
     cout << "NLR: ";
-    TreeNLR(root);
-    cout << endl;
+    tree.printPreOrder(); // Выводим дерево в порядке префикса
 
-    // Выводим дерево в порядке постфикса
     cout << "LRN: ";
-    TreeLRN(root);
-    cout << endl;
+    tree.printPostOrder(); // Выводим дерево в порядке постфикса
 
     return 0;
 }

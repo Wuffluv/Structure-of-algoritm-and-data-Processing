@@ -1,5 +1,55 @@
+// @author Rychkov R.V.
 #pragma once
-class ClassTreenode
-{
+
+// Объявление класса BinaryTreeNode для представления узла бинарного дерева
+
+class TreeNode {
+public:
+    int value;           // Значение, хранящееся в узле
+    TreeNode* left;  // Указатель на левого потомка
+    TreeNode* right; // Указатель на правого потомка
+
+    // Конструктор узла бинарного дерева
+    TreeNode(int value);
 };
 
+// Объявление класса BinaryTree для представления бинарного дерева
+
+class Tree {
+public:
+    // Конструктор класса BinaryTree
+    Tree();
+
+    // Деструктор класса BinaryTree
+    ~Tree();
+
+    // Метод для добавления элемента в бинарное дерево
+    void add(int value);
+
+    // Метод для вывода элементов бинарного дерева в порядке LNR (in-order)
+    void printInOrder();
+
+    // Метод для вывода элементов бинарного дерева в порядке NLR (pre-order)
+    void printPreOrder();
+
+    // Метод для вывода элементов бинарного дерева в порядке LRN (post-order)
+    void printPostOrder();
+
+private:
+    TreeNode* root; // Указатель на корень бинарного дерева
+
+    // Рекурсивная функция для удаления всех узлов бинарного дерева
+    void destroyTree(TreeNode* node);
+
+    // Рекурсивная функция для добавления элемента в бинарное дерево
+    void add(TreeNode*& node, int value);
+
+    // Рекурсивная функция для вывода элементов бинарного дерева в порядке LNR (in-order)
+    void printInOrder(TreeNode* node);
+
+    // Рекурсивная функция для вывода элементов бинарного дерева в порядке NLR (pre-order)
+    void printPreOrder(TreeNode* node);
+
+    // Рекурсивная функция для вывода элементов бинарного дерева в порядке LRN (post-order)
+    void printPostOrder(TreeNode* node);
+};

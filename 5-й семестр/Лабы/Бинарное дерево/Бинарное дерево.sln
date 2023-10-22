@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Бинарное дерево", "Бинарное дерево\Бинарное дерево.vcxproj", "{7C14D362-F42F-4A93-8D85-CB8021E32E8C}"
+EndProject
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "Лабораторная работа №11", "..\..\..\Лабы\Лабораторная работа №11\x64\Debug\Лабораторная работа №11.exe", "{5AE8DBAD-5E4F-48FB-9E6A-B32143FF96FC}"
+	ProjectSection(DebuggerProjectSystem) = preProject
+		PortSupplier = 00000000-0000-0000-0000-000000000000
+		Executable = C:\Users\wolfd\Desktop\Учеба\САОД\Лабы\Лабораторная работа №11\x64\Debug\Лабораторная работа №11.exe
+		RemoteMachine = LAPTOP-M8PJ5LBL
+		StartingDirectory = C:\Users\wolfd\Desktop\Учеба\САОД\Лабы\Лабораторная работа №11\x64\Debug
+		Environment = По умолчанию
+		LaunchingEngine = 00000000-0000-0000-0000-000000000000
+		UseLegacyDebugEngines = No
+		LaunchSQLEngine = No
+		AttachLaunchAction = No
+		IORedirection = Auto
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C14D362-F42F-4A93-8D85-CB8021E32E8C}.Debug|x64.ActiveCfg = Debug|x64
+		{7C14D362-F42F-4A93-8D85-CB8021E32E8C}.Debug|x64.Build.0 = Debug|x64
+		{7C14D362-F42F-4A93-8D85-CB8021E32E8C}.Debug|x86.ActiveCfg = Debug|Win32
+		{7C14D362-F42F-4A93-8D85-CB8021E32E8C}.Debug|x86.Build.0 = Debug|Win32
+		{7C14D362-F42F-4A93-8D85-CB8021E32E8C}.Release|x64.ActiveCfg = Release|x64
+		{7C14D362-F42F-4A93-8D85-CB8021E32E8C}.Release|x64.Build.0 = Release|x64
+		{7C14D362-F42F-4A93-8D85-CB8021E32E8C}.Release|x86.ActiveCfg = Release|Win32
+		{7C14D362-F42F-4A93-8D85-CB8021E32E8C}.Release|x86.Build.0 = Release|Win32
+		{5AE8DBAD-5E4F-48FB-9E6A-B32143FF96FC}.Debug|x64.ActiveCfg = Release|x64
+		{5AE8DBAD-5E4F-48FB-9E6A-B32143FF96FC}.Debug|x86.ActiveCfg = Release|x64
+		{5AE8DBAD-5E4F-48FB-9E6A-B32143FF96FC}.Release|x64.ActiveCfg = Release|x64
+		{5AE8DBAD-5E4F-48FB-9E6A-B32143FF96FC}.Release|x86.ActiveCfg = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F35F69C-20E0-46CD-8D0E-72AA1C5DCC6E}
+	EndGlobalSection
+EndGlobal

@@ -1,81 +1,47 @@
 ﻿#include <iostream>
-#include <fstream>
-#include <queue>
-#include "job.h"
+#include <vector>
+#include <bitset>
 
-// Класс PQueue представляет очередь приоритетов для заданий
-class PQueue {
-private:
-    std::priority_queue<JobRequest> jobPool; // Очередь приоритетов заданий
-
-public:
-    // Функция для вставки задания в очередь приоритетов
-    void insertJob(const JobRequest& job) {
-        jobPool.push(job);
+// Функция для кодирования байта по Манчестерскому коду
+std::vector<bool> manchesterEncodeByte(unsigned char byte) {
+    std::vector<bool> encoded;
+    for (int i = 7; i >= 0; i--) {
+        // Кодирование данных
+        if ((byte >> i) & 1) {
+            // Если текущий бит равен 1, то добавляем переход от низкого к высокому уровню
+            encoded.push_back(true);
+            encoded.push_back(false);
+        }
+        else {
+            // Если текущий бит равен 0, то добавляем переход от высокого к низкому уровню
+            encoded.push_back(false);
+            encoded.push_back(true);
+        }
     }
-
-    // Функция для извлечения задания из очереди приоритетов
-    JobRequest extractJob() {
-        JobRequest job = jobPool.top();
-        jobPool.pop();
-        return job;
-    }
-
-    // Функция для проверки, пуста ли очередь приоритетов
-    bool isEmpty() const {
-        return jobPool.empty();
-    }
-};
-
-// Функция для печати информации о задании
-void PrintJobInfo(const JobRequest& job) {
-    std::cout << "ID-номер задания: " << job.id << std::endl;
-    std::cout << "Категория сотрудника: " << job.category << std::endl;
-    std::cout << "Время выполнения: " << job.time << " часов" << std::endl;
-    std::cout << std::endl;
-}
-
-// Функция для печати сводки по выполненным заданиям
-void PrintJobSummary(const std::vector<JobRequest>& completedJobs) {
-    std::cout << "Сводка по выполненным заданиям:" << std::endl;
-
-    for (const JobRequest& job : completedJobs) {
-        std::cout << "ID-номер задания: " << job.id << std::endl;
-        std::cout << "Категория сотрудника: " << job.category << std::endl;
-        std::cout << "Время выполнения: " << job.time << " часов" << std::endl;
-        std::cout << std::endl;
-    }
+    return encoded;
 }
 
 int main() {
-    setlocale(LC_ALL, "RUS");
-    std::ifstream inputFile("job.dat"); // Открываем файл с заданиями
-    PQueue jobQueue; // Создаем очередь приоритетов
+    // Фраза, которую мы хотим закодировать
+    std::string message = "hello world";
 
-    if (!inputFile.is_open()) {
-        std::cout << "Ошибка открытия файла job.dat" << std::endl;
-        return 1;
+    // Кодирование фразы
+    std::vector<bool> encodedMessage;
+    for (char c : message) {
+        std::vector<bool> encodedByte = manchesterEncodeByte(c);
+        encodedMessage.insert(encodedMessage.end(), encodedByte.begin(), encodedByte.end());
     }
 
-    JobRequest job;
-    std::vector<JobRequest> completedJobs; // Вектор для хранения выполненных заданий
-
-    // Читаем записи из файла и вставляем их в очередь приоритетов
-    while (inputFile >> job.category >> job.id >> job.time) {
-        jobQueue.insertJob(job);
+    // Визуальное отображение графика кодирования
+    for (bool bit : encodedMessage) {
+        if (bit) {
+            std::cout << "+"; // Высокий уровень
+        }
+        else {
+            std::cout << "-"; // Низкий уровень
+        }
     }
-
-    inputFile.close(); // Закрываем файл
-
-    // Извлекаем задания из очереди приоритетов и печатаем информацию о них
-    while (!jobQueue.isEmpty()) {
-        JobRequest currentJob = jobQueue.extractJob();
-        PrintJobInfo(currentJob);
-        completedJobs.push_back(currentJob); // Добавляем выполненное задание в вектор
-    }
-
-    // Печатаем сводку по выполненным заданиям
-    PrintJobSummary(completedJobs);
+    std::cout << std::endl;
 
     return 0;
 }

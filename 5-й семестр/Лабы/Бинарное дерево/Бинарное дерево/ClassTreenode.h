@@ -1,7 +1,7 @@
 // @author Rychkov R.V.
 #pragma once
 
-// ќбъ€вление класса BinaryTreeNode дл€ представлени€ узла бинарного дерева
+// ќбъ€вление класса TreeNode дл€ представлени€ узла бинарного дерева
 
 class TreeNode {
 public:
@@ -13,7 +13,7 @@ public:
     TreeNode(int value);
 };
 
-// ќбъ€вление класса BinaryTree дл€ представлени€ бинарного дерева
+// ќбъ€вление класса Tree дл€ представлени€ бинарного дерева
 
 class Tree {
 public:
@@ -34,6 +34,11 @@ public:
 
     // ћетод дл€ вывода элементов бинарного дерева в пор€дке LRN (post-order)
     void printPostOrder();
+    
+    //„тобы получить доступ к корневому узлу извне класса
+    TreeNode* getRoot() {
+        return root;
+    }
 
 private:
     TreeNode* root; // ”казатель на корень бинарного дерева
@@ -52,4 +57,7 @@ private:
 
     // –екурсивна€ функци€ дл€ вывода элементов бинарного дерева в пор€дке LRN (post-order)
     void printPostOrder(TreeNode* node);
+
+    // –екурсивна€ функци€ дл€ подсчета узло в дереве
+    int countNodes(TreeNode* root);
 };

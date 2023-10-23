@@ -93,7 +93,18 @@ void Tree::printPostOrder(TreeNode* node) {
     }
 }
 
+// Рекурсивная функция для подсчета узло в дереве
+int countNodes(TreeNode* root) {
+    if (root == nullptr) {
+        return 0; // Если дерево пустое, возвращаем 0
+    }
+    else {
+        return 1 + countNodes(root->left) + countNodes(root->right); //Суммируем
+    }
+}
+
 int main() {
+    setlocale(LC_ALL, "RUS");
     Tree tree;
 
     tree.add(10);
@@ -112,5 +123,12 @@ int main() {
     cout << "LRN: ";
     tree.printPostOrder(); // Выводим дерево в порядке постфикса
 
+    // Подсчитываем количество узлов в дереве
+    int nodeCount = countNodes(tree.getRoot());
+
+    // Выводим результат количества узлов в дереве
+    cout << "Количество узлов в дереве: " << nodeCount << endl;
+
     return 0;
 }
+

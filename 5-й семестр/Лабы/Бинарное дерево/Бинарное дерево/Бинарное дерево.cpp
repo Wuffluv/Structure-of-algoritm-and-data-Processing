@@ -113,22 +113,22 @@ int height(TreeNode* root) {
     return 1 + max(height(root->left), height(root->right));
 }
 
-// Рекурсивная функция для печати дерева в порядке LNR
+// Рекурсивная функция для печати структуры дерева в порядке LNR
 void Tree::printTree(TreeNode* node, int depth) {
     if (node) {
-        printTree(node->right, depth + 1); // Обходим правое поддерево (сначала)
+        printTree(node->left, depth + 1); // Обходим левое поддерево
         for (int i = 0; i < depth; i++) {
-            cout << "   "; //Отступ для наглядности
+            cout << "   "; // Отступ для наглядности
         }
-        cout << node->value << endl; //Выводим значение текущего узла
-        printTree(node->left, depth + 1); //Затем обходим левое поддерево
+        cout << node->value << endl; // Выводим значение текущего узла
+        printTree(node->right, depth + 1); // Затем обходим правое поддерево
     }
 }
 
 // Метод для печати структуры дерева
 void Tree::printTree() {
     printTree(root, 0);
-    cout << std::endl;
+    cout << endl;
 }
 
 int main() {
@@ -141,6 +141,7 @@ int main() {
     tree.add(2);
     tree.add(7);
     tree.add(12);
+    tree.add(17);
     
     cout << "LNR: ";
     tree.printInOrder(); // Выводим дерево в порядке вставки
@@ -160,7 +161,7 @@ int main() {
     // Выводим глубину дерева
     cout << "Глубина дерева: " << height(tree.getRoot()) << endl;
 
-    cout << "Структура дерева: " << endl;
+    cout << "Структура дерева LNR: " << endl;
     tree.printTree(); //Печатаем структуру дерева
 
     return 0;

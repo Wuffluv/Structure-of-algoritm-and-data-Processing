@@ -40,6 +40,9 @@ public:
         return root;
     }
 
+    // Метод для печати структуры дерева
+    void printTree();
+
 private:
     TreeNode* root; // Указатель на корень бинарного дерева
 
@@ -58,6 +61,12 @@ private:
     // Рекурсивная функция для вывода элементов бинарного дерева в порядке LRN (post-order)
     void printPostOrder(TreeNode* node);
 
-    // Рекурсивная функция для подсчета узло в дереве
+    // Рекурсивная функция для подсчета узлов в дереве
     int countNodes(TreeNode* root);
+
+    // Рекурсивная функция для вычисления высоты дерева
+    int height(TreeNode* root);
+
+    // Рекурсивная функция для печати дерева в порядке LNR
+    void printTree(TreeNode* node, int depth);
 };

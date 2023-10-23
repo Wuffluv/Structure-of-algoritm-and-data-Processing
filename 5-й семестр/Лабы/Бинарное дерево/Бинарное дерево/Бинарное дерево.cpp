@@ -103,6 +103,34 @@ int countNodes(TreeNode* root) {
     }
 }
 
+// Рекурсивная функция для вычисления высоты дерева
+int height(TreeNode* root) {
+    // Базовый случай, если пустое дерево имеет высоту 0
+    if (root == nullptr) {
+        return 0;
+    }
+    // Повторяем для левого и правого поддерева и учитываем максимальную глубину
+    return 1 + max(height(root->left), height(root->right));
+}
+
+// Рекурсивная функция для печати дерева в порядке LNR
+void Tree::printTree(TreeNode* node, int depth) {
+    if (node) {
+        printTree(node->right, depth + 1); // Обходим правое поддерево (сначала)
+        for (int i = 0; i < depth; i++) {
+            cout << "   "; //Отступ для наглядности
+        }
+        cout << node->value << endl; //Выводим значение текущего узла
+        printTree(node->left, depth + 1); //Затем обходим левое поддерево
+    }
+}
+
+// Метод для печати структуры дерева
+void Tree::printTree() {
+    printTree(root, 0);
+    cout << std::endl;
+}
+
 int main() {
     setlocale(LC_ALL, "RUS");
     Tree tree;
@@ -113,7 +141,7 @@ int main() {
     tree.add(2);
     tree.add(7);
     tree.add(12);
-
+    
     cout << "LNR: ";
     tree.printInOrder(); // Выводим дерево в порядке вставки
 
@@ -128,6 +156,12 @@ int main() {
 
     // Выводим результат количества узлов в дереве
     cout << "Количество узлов в дереве: " << nodeCount << endl;
+
+    // Выводим глубину дерева
+    cout << "Глубина дерева: " << height(tree.getRoot()) << endl;
+
+    cout << "Структура дерева: " << endl;
+    tree.printTree(); //Печатаем структуру дерева
 
     return 0;
 }

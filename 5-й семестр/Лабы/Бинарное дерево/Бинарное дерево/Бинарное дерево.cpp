@@ -113,7 +113,7 @@ int height(TreeNode* root) {
     return 1 + max(height(root->left), height(root->right));
 }
 
-// Рекурсивная функция для печати структуры дерева в порядке LNR
+// Рекурсивная функция для печати структуры дерева в порядке NLR
 void Tree::printTree(TreeNode* node, int depth) {
     if (node) {
         printTree(node->left, depth + 1); // Обходим левое поддерево
@@ -161,7 +161,7 @@ int main() {
     // Выводим глубину дерева
     cout << "Глубина дерева: " << height(tree.getRoot()) << endl;
 
-    cout << "Структура дерева LNR: " << endl;
+    cout << "Структура дерева NLR " << endl;
     tree.printTree(); //Печатаем структуру дерева
 
     return 0;

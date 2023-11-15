@@ -124,10 +124,10 @@ int Tree<T>::height(TreeNode<T>* root) {
         return 0;
     }
     // Повторяем для левого и правого поддерева и учитываем максимальную глубину
-    return 1 + max(height(root->left), height(root->right));
+    return 1 + std::max(height(root->left), height(root->right));
 }
 
-// Рекурсивная функция для печати структуры дерева в порядке LNR
+// Рекурсивная функция для печати структуры дерева в порядке NLR
 template <typename T>
 void Tree<T>::printTree(TreeNode<T>* node, int depth) {
     if (node) {
@@ -177,7 +177,7 @@ int main() {
     // Выводим глубину дерева
     cout << "Глубина дерева: " << tree.height(tree.getRoot()) << endl;
 
-    cout << "Структура дерева LNR " << endl;
+    cout << "Структура дерева NLR " << endl;
     tree.printTree(); // Печатаем структуру дерева
 
     return 0;

@@ -19,8 +19,6 @@ Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "Лабораторная р
 		IORedirection = Auto
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TreeTest", "TreeTest\TreeTest.vcxproj", "{4AAA93F7-B5E8-4F87-AFA9-7CB1CF6F574A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,14 +39,6 @@ Global
 		{5AE8DBAD-5E4F-48FB-9E6A-B32143FF96FC}.Debug|x86.ActiveCfg = Release|x64
 		{5AE8DBAD-5E4F-48FB-9E6A-B32143FF96FC}.Release|x64.ActiveCfg = Release|x64
 		{5AE8DBAD-5E4F-48FB-9E6A-B32143FF96FC}.Release|x86.ActiveCfg = Release|x64
-		{4AAA93F7-B5E8-4F87-AFA9-7CB1CF6F574A}.Debug|x64.ActiveCfg = Debug|x64
-		{4AAA93F7-B5E8-4F87-AFA9-7CB1CF6F574A}.Debug|x64.Build.0 = Debug|x64
-		{4AAA93F7-B5E8-4F87-AFA9-7CB1CF6F574A}.Debug|x86.ActiveCfg = Debug|Win32
-		{4AAA93F7-B5E8-4F87-AFA9-7CB1CF6F574A}.Debug|x86.Build.0 = Debug|Win32
-		{4AAA93F7-B5E8-4F87-AFA9-7CB1CF6F574A}.Release|x64.ActiveCfg = Release|x64
-		{4AAA93F7-B5E8-4F87-AFA9-7CB1CF6F574A}.Release|x64.Build.0 = Release|x64
-		{4AAA93F7-B5E8-4F87-AFA9-7CB1CF6F574A}.Release|x86.ActiveCfg = Release|Win32
-		{4AAA93F7-B5E8-4F87-AFA9-7CB1CF6F574A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

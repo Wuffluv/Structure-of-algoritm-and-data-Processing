@@ -128,7 +128,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ClassTreenode.cpp" />
-    <ClCompile Include="Бинарное дерево.cpp" />
+    <ClCompile Include="BinaryTree.cpp" />
+    <ClCompile Include="ModulTree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassTreenode.h" />

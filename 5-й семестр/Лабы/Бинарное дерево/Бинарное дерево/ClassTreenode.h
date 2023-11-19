@@ -1,6 +1,6 @@
 // @author Rychkov R.V.
 #pragma once
-
+#include <vector>
 
 template <typename T>
 class TreeNode {
@@ -11,6 +11,7 @@ public:
 
     // Конструктор узла бинарного дерева
     TreeNode(T value);
+    
 };
 
 template <typename T>
@@ -48,11 +49,28 @@ public:
     // Рекурсивная функция для вычисления высоты дерева
     int height(TreeNode<T>* root);
 
+    // Метод для обхода дерева в ширину
+    void breadthFirstTraversal();
+
+    // Конструктор копирования для класса 
+    Tree(const Tree<T>& other);
+
+    // Публичный метод для создания копии дерева
+    Tree<T> copy();
+
+    // Метод для получения массива значений узлов дерева в порядке обхода в ширину
+    std::vector<T> toArray();
+    
+   
 private:
+
     TreeNode<T>* root; // Указатель на корень бинарного дерева
 
-    // Рекурсивная функция для удаления всех узлов бинарного дерева
-    void destroyTree(TreeNode<T>* node);
+    // Рекурсивная функция для удаления дерева
+    void destroyTree(TreeNode<T>* root);
+
+    // функция удаления узла дерева
+    void destroyRoot(TreeNode<T>* node);
 
     // Рекурсивная функция для добавления элемента в бинарное дерево
     void add(TreeNode<T>*& node, T value);
@@ -68,4 +86,8 @@ private:
 
     // Рекурсивная функция для печати дерева 
     void printTree(TreeNode<T>* node, int depth);
+
+    // Рекурсивная функция для копирования узлов бинарного дерева
+    void copyTree(TreeNode<T>*& destination, const TreeNode<T>* source);
+
 };

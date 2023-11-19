@@ -19,6 +19,11 @@ Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "Лабораторная р
 		IORedirection = Auto
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{2AA6B399-B6DB-4862-A1C0-FAB5B5CFCA8E}"
+	ProjectSection(SolutionItems) = preProject
+		TreeTest\test.cpp = TreeTest\test.cpp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

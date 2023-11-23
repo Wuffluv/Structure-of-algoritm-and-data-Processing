@@ -41,7 +41,8 @@ void Tree<T>::destroyTree(TreeNode<T>* root) {
         destroyTree(root->left); 
         destroyTree(root->right); 
 
-        delete root; 
+        delete root; // Удаление корня 
+
     }
     root = nullptr;
 }
@@ -165,13 +166,16 @@ void Tree<T>::printTree() {
     cout << endl;
 }
 
+
+
 // Реализация рекурсивной функции копирования узлов бинарного дерева
 template <typename T>
 void Tree<T>::copyTree(TreeNode<T>*& destination, const TreeNode<T>* source) {
     if (source) {
-        destination = new TreeNode<T>(source->value);
-        copyTree(destination->left, source->left);
-        copyTree(destination->right, source->right);
+        destination = new TreeNode<T>(source->value);//Destination - node
+        copyTree(destination->left, source->left)//Работа с узлом с left, корень с left
+        copyTree(destination->right, source->right);///Работа с узлом с right, корень с right
+        //Порядок NLR
     }
     else {
         destination = nullptr;

@@ -9,6 +9,8 @@ int main() {
     setlocale(LC_ALL, "RUS");
     Tree<int> tree;
 
+    //todo: функция создания дерева на основе узлов
+
     tree.add(2);
     tree.add(5);
     tree.add(7);

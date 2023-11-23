@@ -3,6 +3,8 @@
 #include <gtest/gtest.h>
 #include <pch.h>
 
+//todo: сделать тесты класса узлов
+
 using namespace std;
 
 // Тест для функции подсчета узлов

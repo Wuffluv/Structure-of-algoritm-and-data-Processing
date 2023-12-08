@@ -1,7 +1,7 @@
 ﻿// @author Rychkov R.V.
 #include <iostream>
 #include "ModulTree.cpp"
-
+#include "BST.h"
 
 using namespace std;
 
@@ -9,7 +9,6 @@ int main() {
     setlocale(LC_ALL, "RUS");
     Tree<int> tree;
 
-    //todo: функция создания дерева на основе узлов
 
     tree.add(2);
     tree.add(5);
@@ -55,6 +54,29 @@ int main() {
         cout << value << " ";
     }
     cout << endl;
+
+
+
+    // BST
+    BinarySearchTree<int> binarySearchTree;
+
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(5);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(10);
+    //binarySearchTree.insert(12);
+    binarySearchTree.insert(15);
+    binarySearchTree.insert(17);
+
+    // Пример использования метода поиска
+    if (binarySearchTree.search(12)) {
+        cout << "Элемент 12 найден в бинарном дереве поиска." << endl;
+    }
+    else {
+        cout << "Элемент 12 не найден в бинарном дереве поиска." << endl;
+    }
+
+
 
     return 0;
 }

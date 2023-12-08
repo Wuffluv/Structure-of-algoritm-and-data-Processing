@@ -2,6 +2,7 @@
 #include <iostream>
 #include "ClassTreenode.h"
 #include <queue>
+#include "BST.h"
 
 using namespace std;
 
@@ -173,7 +174,7 @@ template <typename T>
 void Tree<T>::copyTree(TreeNode<T>*& destination, const TreeNode<T>* source) {
     if (source) {
         destination = new TreeNode<T>(source->value);//Destination - node
-        copyTree(destination->left, source->left)//Работа с узлом с left, корень с left
+        copyTree(destination->left, source->left);//Работа с узлом с left, корень с left
         copyTree(destination->right, source->right);///Работа с узлом с right, корень с right
         //Порядок NLR
     }
@@ -214,4 +215,42 @@ std::vector<T> Tree<T>::toArray() {
     }
 
     return result;
+}
+
+
+
+// Реализация конструктора класса BST
+template <typename T>
+BinarySearchTree<T>::BinarySearchTree() : Tree<T>() {}
+
+// Реализация метода для добавления элемента в бинарное дерево поиска
+template <typename T>
+void BinarySearchTree<T>::insert(T value) {
+    this->add(value);
+}
+
+// Реализация метода для поиска элемента в бинарном дереве поиска
+template <typename T>
+bool BinarySearchTree<T>::search(T value) {
+    TreeNode<T>* current = this->getRoot(); // Устанавливаем текущий узел в корень дерева
+    while (current) { // Пока текущий узел существует
+        if (value == current->value) {
+            return true; // Если значение текущего узла совпадает с искомым, элемент найден
+        }
+        else if (value < current->value) {
+            current = current->left; // Если искомое значение меньше значения текущего узла, переходим к левому потомку
+        }
+        else {
+            current = current->right; // Если искомое значение больше значения текущего узла, переходим к правому потомку
+        }
+    }
+    return false; // Элемент не найден
+}
+
+
+// Реализация метода для удаления элемента из бинарного дерева поиска
+template <typename T>
+void BinarySearchTree<T>::remove(T value) {
+    // Реализация удаления элемента из бинарного дерева поиска
+    
 }

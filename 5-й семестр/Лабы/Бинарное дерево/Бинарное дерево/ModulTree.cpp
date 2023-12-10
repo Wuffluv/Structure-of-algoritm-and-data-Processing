@@ -251,6 +251,22 @@ bool BinarySearchTree<T>::search(T value) {
 // Реализация метода для удаления элемента из бинарного дерева поиска
 template <typename T>
 void BinarySearchTree<T>::remove(T value) {
-    // Реализация удаления элемента из бинарного дерева поиска
-    
+    //
+}
+
+// Реализация деструктора
+template <typename T>
+BinarySearchTree<T>::~BinarySearchTree() {
+    deleteTree(this->getRoot());
+}
+
+
+// Реализация функции deleteTree
+template <typename T>
+void deleteTree(TreeNode<T>* root) {
+    if (root) {
+        deleteTree(root->left);
+        deleteTree(root->right);
+        delete root;
+    }
 }

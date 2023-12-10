@@ -9,6 +9,9 @@ public:
     // Конструктор класса BinarySearchTree
     BinarySearchTree();
 
+    // Деструктор
+    ~BinarySearchTree();
+
     // Метод для добавления элемента в бинарное дерево поиска
     void insert(T value);
 
@@ -17,6 +20,12 @@ public:
 
     // Метод для удаления элемента из бинарного дерева поиска
     void remove(T value);
+
+
+private:
+    // Рекурсивная функция для удаления всех узлов дерева
+    template <typename T>
+    void deleteTree(TreeNode<T>* root);
 };
 
 

@@ -43,4 +43,25 @@ public:
 		}
 	}
 
+
+	//Вставка
+	void insert(const T& data) {
+		Node<T> newNode = new Node<t>(data);
+		//Если список пустой, то новый узел становится головой и хвостом
+		if (head == nullptr) {
+			head = newNode;
+			tail = newNode;
+		}
+		else {
+			//новый узел привязываем к текущему хвосту
+			tail->next = newNode;
+			//устанавливаем ссылку на пред. узел
+			newNode->tail;
+			//новый узел становитс новым хвостом
+			tail = newNode;
+		}
+	}
+
+
+
 };

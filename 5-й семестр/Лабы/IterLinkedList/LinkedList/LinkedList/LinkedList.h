@@ -142,30 +142,73 @@ public:
 	}
 
 	/// —ортировка выбором
-void sort() {
-    Node<T>* current = head;  // ”казатель на текущий узел списка
-    while (current != nullptr) {
-        Node<T>* minNode = current;  // ”казатель на узел с минимальным значением
-        Node<T>* temp = current;      // ¬ременный указатель дл€ прохода по списку
+	void sort() {
+		Node<T>* current = head;  // ”казатель на текущий узел списка
+		while (current != nullptr) {
+			Node<T>* minNode = current;  // ”казатель на узел с минимальным значением
+			Node<T>* temp = current;      // ¬ременный указатель дл€ прохода по списку
 
-        // ѕоиск узла с минимальным значением в оставшейс€ части списка
-        while (temp != nullptr) {
-            if (temp->data < minNode->data) {
-                minNode = temp;
-            }
-            temp = temp->next;
-        }
+			// ѕоиск узла с минимальным значением в оставшейс€ части списка
+			while (temp != nullptr) {
+				if (temp->data < minNode->data) {
+					minNode = temp;
+				}
+				temp = temp->next;
+			}
 
-        // ≈сли найден узел с минимальным значением, производим обмен значени€ми
-        if (minNode != current) {
-            // ќбмен значени€ми узлов
-            T tempData = current->data;
-            current->data = minNode->data;
-            minNode->data = tempData;
-        }
+			// ≈сли найден узел с минимальным значением, производим обмен значени€ми
+			if (minNode != current) {
+				// ќбмен значени€ми узлов
+				T tempData = current->data;
+				current->data = minNode->data;
+				minNode->data = tempData;
+			}
 
-        current = current->next;  // ѕереход к следующему узлу
-    }
-}
+			current = current->next;  // ѕереход к следующему узлу
+		}
+	}
+
+	template<typename T>
+	class Iterator : public AbstractIterator<T> {
+	private:
+		Node<T>* current;  // ”казатель на текущий узел
+
+	public:
+		//  онструктор итератора, инициализирующий указатель на переданный узел
+		Iterator(Node<T>* node) {
+			current = node;
+		}
+
+		// ѕерегруженный оператор разыменовани€ (*), возвращает ссылку на данные текущего узла
+		T& operator*() override {
+			return current->data;
+		}
+
+		// ѕерегруженный оператор префиксного инкремента (++), перемещает итератор к следующему узлу
+		AbstractIterator<T>& operator++() override {
+			current = current->next;
+			return *this;
+		}
+
+		// ѕерегруженный оператор постфиксного инкремента (a++), возвращает копию текущего состо€ни€ итератора,
+		// затем перемещает итератор к следующему узлу
+		AbstractIterator<T>& operator++(int) override {
+			Iterator<T> temp = *this;
+			++(*this);
+			return temp;
+		}
+
+		// ѕерегруженный оператор сравнени€ на равенство (==), сравнивает текущие узлы итераторов
+		bool operator==(const AbstractIterator<T>& other) override {
+			const Iterator* otherIterator = dynamic_cast<const Iterator*>(&other);
+			return current == otherIterator->current;
+		}
+
+		// ѕерегруженный оператор сравнени€ на неравенство (!=), использует оператор сравнени€ на равенство
+		bool operator!=(const AbstractIterator<T>& other) override {
+			return !(*this == other);
+		}
+	};
+
 
 };

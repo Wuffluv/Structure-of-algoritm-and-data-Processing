@@ -98,5 +98,18 @@ public:
 		}
 		cout << endl;
 	}
+	// Поиск элемента по значению
+	Node<T>* search(const T& data) {
+		Node<T>* current = head;
+		while (current != nullptr) {
+			if (current->data == data) {
+				//Возвращаем узел, если найден эелемнт
+				return current;
+			}
+			current = current->next;
+		}
+		//Если элемент не найден, то возвращаем Nullptr
+		return nullptr;
+	}
 
 };

@@ -13,22 +13,24 @@ public:
 	//конструктор
 	Node(int data) {
 		this->data = data; //активация данных узла
-		next = nullptr; //инициализируем указатель след. узла
-		prev = nullptr; //инициализируем указатель пред. узла
+		next = nullptr; //инициализируем указатель след. узел
+		prev = nullptr; //инициализируем указатель пред. узел
 	}
 };
 
+//определение класса связанного списка
 template <typename T>
 class LinkedList {
 private:
-	Node<T>* head;
-	Node<T>* tail;
+	Node<T>* head; // Указатель на голову списка
+	Node<T>* tail; // Указатель на хвост списка
 public:
 	LinkedList() {
-		head = nullptr; //инициализируем голову
-		tail = nullptr; //инициализируем хвост
+		head = nullptr; //указатель на голову
+		tail = nullptr; //указатель на хвост
 	}
 
+	// Вставка нового элемента в начало списка
 	void insertHead(const T& data) {
 		Node<T>* newNode = new Node<T>(data);
 		//Если список пустой, то новый узел становится головой и хвостом
@@ -37,14 +39,14 @@ public:
 			tail = newNode;
 		}
 		else {
-			newNode->next = head; //иначе переходит на голову
-			head-> = newNode;
-			head = newNode; //Голова становится новым узлом
+			newNode->next = head; // Установка связи с текущей головой
+			head-> = newNode; // Установка обратной связи с новым узлом
+			head = newNode; // Обновление указателя на голову
 		}
 	}
 
 
-	//Вставка
+	// Вставка нового элемента в конец списка
 	void insert(const T& data) {
 		Node<T> newNode = new Node<t>(data);
 		//Если список пустой, то новый узел становится головой и хвостом
@@ -53,15 +55,36 @@ public:
 			tail = newNode;
 		}
 		else {
-			//новый узел привязываем к текущему хвосту
+			// Привязка нового узла к текущему хвосту
 			tail->next = newNode;
-			//устанавливаем ссылку на пред. узел
+			// Установка обратной связи с предыдущим узлом
 			newNode->tail;
-			//новый узел становитс новым хвостом
+			// Обновление указателя на хвост
 			tail = newNode;
 		}
 	}
 
+	// Вставка нового элемента после указанного значения
+	void insertAfter(int DataAfter, const T& data) {
+		Node<T>* newNode = new Node<T>(data);
+		Node<T>* newNode = head;
 
+		while (current != nullptr) {
+			if (current->data == DataAfter) {
+				if (current == tail) {
+					tail = newNode; /// обновляем хвост списка, если вставляем после хвостового узла
+				}
+				newNode->prev = current; //Установка обратной связи с предыдущим узлом
+				newNode->next = current->next; //установка связи со следующим узлом
+				if (current->next != nullptr) {
+					current->next->prev = newNode; //Установка обратной связи для следующего узла
+				}
+				current->next = newNode; //становка связи для текущего узла
+				return
+			}
+			current = current->next;
+		}
+
+	}
 
 };

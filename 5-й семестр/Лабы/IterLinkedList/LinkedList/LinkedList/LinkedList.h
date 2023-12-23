@@ -111,5 +111,34 @@ public:
 		//Если элемент не найден, то возвращаем Nullptr
 		return nullptr;
 	}
+	// Удаление элемента из списка
+	void remove(const T& data) {
+		Node<T>* current = head;
+		while (current != nullptr) {
+			if (current->data == data) {
+				if (current == head) {
+					//Обновляем голову списка, если удаляемый элемент - головной узел
+					head = current->next;
+				}
+				if (current == tail) {
+					//Обноялвем хвост списка, если удаляемый элемент - хвостовой узел
+					tail = current->prev;
+				}
+				if (current->prev != nullptr) {
+					//Обновляем ссылку на след. элемент для пред. узла
+					current->prev->next = current->next;
+				}
+				if (current->next != nullptr) {
+					//Обновляем ссылку на пред. элемент для след. узла
+					current->next->prev = current->prev;
+				}
+				//Удаление узла
+				delete current;
+				return;
+			}
+			// Переход к следующему узлу
+			current = current->next;
+		}
+	}
 
 };

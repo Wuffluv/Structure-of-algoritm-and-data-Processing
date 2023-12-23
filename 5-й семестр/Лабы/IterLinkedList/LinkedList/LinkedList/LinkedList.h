@@ -3,6 +3,8 @@
 #include <iostream>
 #include "Iterator.h"
 
+using namespace std;
+
 template <typename T>
 class Node {
 public:
@@ -40,7 +42,7 @@ public:
 		}
 		else {
 			newNode->next = head; // ”становка св€зи с текущей головой
-			head-> = newNode; // ”становка обратной св€зи с новым узлом
+			head->prev = newNode; // ”становка обратной св€зи с новым узлом
 			head = newNode; // ќбновление указател€ на голову
 		}
 	}
@@ -48,7 +50,7 @@ public:
 
 	// ¬ставка нового элемента в конец списка
 	void insert(const T& data) {
-		Node<T> newNode = new Node<t>(data);
+		Node<T>* newNode = new Node<T>(data);
 		//≈сли список пустой, то новый узел становитс€ головой и хвостом
 		if (head == nullptr) {
 			head = newNode;
@@ -58,7 +60,7 @@ public:
 			// ѕрив€зка нового узла к текущему хвосту
 			tail->next = newNode;
 			// ”становка обратной св€зи с предыдущим узлом
-			newNode->tail;
+			newNode->prev = tail;
 			// ќбновление указател€ на хвост
 			tail = newNode;
 		}
@@ -67,7 +69,7 @@ public:
 	// ¬ставка нового элемента после указанного значени€
 	void insertAfter(int DataAfter, const T& data) {
 		Node<T>* newNode = new Node<T>(data);
-		Node<T>* newNode = head;
+		Node<T>* current = head;
 
 		while (current != nullptr) {
 			if (current->data == DataAfter) {
@@ -80,7 +82,7 @@ public:
 					current->next->prev = newNode; //”становка обратной св€зи дл€ следующего узла
 				}
 				current->next = newNode; //становка св€зи дл€ текущего узла
-				return
+				return;
 			}
 			current = current->next;
 		}
@@ -92,11 +94,11 @@ public:
 		Node<T>* current = head;
 		while (current != nullptr) {
 			//¬ыводим данные текущего узла
-			cout << current->data << " ";
+			std::cout << current->data << " ";
 			//ѕереходим к след. узлу
 			current = current->next;
 		}
-		cout << endl;
+		std::cout << std::endl;
 	}
 	// ѕоиск элемента по значению
 	Node<T>* search(const T& data) {
@@ -169,7 +171,7 @@ public:
 	}
 
 	template<typename T>
-	class Iterator : public AbstractIterator<T> {
+	class Iterator : public Iterator<T> {
 	private:
 		Node<T>* current;  // ”казатель на текущий узел
 
@@ -185,27 +187,27 @@ public:
 		}
 
 		// ѕерегруженный оператор префиксного инкремента (++), перемещает итератор к следующему узлу
-		AbstractIterator<T>& operator++() override {
+		Iterator<T>& operator++() override {
 			current = current->next;
 			return *this;
 		}
 
 		// ѕерегруженный оператор постфиксного инкремента (a++), возвращает копию текущего состо€ни€ итератора,
 		// затем перемещает итератор к следующему узлу
-		AbstractIterator<T>& operator++(int) override {
+		Iterator<T>& operator++(int) override {
 			Iterator<T> temp = *this;
 			++(*this);
 			return temp;
 		}
 
 		// ѕерегруженный оператор сравнени€ на равенство (==), сравнивает текущие узлы итераторов
-		bool operator==(const AbstractIterator<T>& other) override {
+		bool operator==(const Iterator<T>& other) override {
 			const Iterator* otherIterator = dynamic_cast<const Iterator*>(&other);
 			return current == otherIterator->current;
 		}
 
 		// ѕерегруженный оператор сравнени€ на неравенство (!=), использует оператор сравнени€ на равенство
-		bool operator!=(const AbstractIterator<T>& other) override {
+		bool operator!=(const Iterator<T>& other) override {
 			return !(*this == other);
 		}
 	};

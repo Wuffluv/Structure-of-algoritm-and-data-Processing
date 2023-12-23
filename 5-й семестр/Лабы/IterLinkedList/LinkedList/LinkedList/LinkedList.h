@@ -210,5 +210,15 @@ public:
 		}
 	};
 
+	Iterator<T> begin() {
+		// ¬озвращает итератор, указывающий на начало списка
+		return Iterator<T>(head);
+	}
+
+	Iterator<T> end() {
+		// ¬озвращает итератор, указывающий на конец списка (nullptr)
+		return Iterator<T>(nullptr);
+	}
+
 
 };

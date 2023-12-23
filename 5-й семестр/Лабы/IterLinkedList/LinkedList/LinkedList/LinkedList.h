@@ -141,4 +141,31 @@ public:
 		}
 	}
 
+	/// Сортировка выбором
+void sort() {
+    Node<T>* current = head;  // Указатель на текущий узел списка
+    while (current != nullptr) {
+        Node<T>* minNode = current;  // Указатель на узел с минимальным значением
+        Node<T>* temp = current;      // Временный указатель для прохода по списку
+
+        // Поиск узла с минимальным значением в оставшейся части списка
+        while (temp != nullptr) {
+            if (temp->data < minNode->data) {
+                minNode = temp;
+            }
+            temp = temp->next;
+        }
+
+        // Если найден узел с минимальным значением, производим обмен значениями
+        if (minNode != current) {
+            // Обмен значениями узлов
+            T tempData = current->data;
+            current->data = minNode->data;
+            minNode->data = tempData;
+        }
+
+        current = current->next;  // Переход к следующему узлу
+    }
+}
+
 };

@@ -87,4 +87,16 @@ public:
 
 	}
 
+	// Вывод элементов списка
+	void print() {
+		Node<T>* current = head;
+		while (current != nullptr) {
+			//Выводим данные текущего узла
+			cout << current->data << " ";
+			//Переходим к след. узлу
+			current = current->next;
+		}
+		cout << endl;
+	}
+
 };

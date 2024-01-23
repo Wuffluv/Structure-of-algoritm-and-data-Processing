@@ -3,6 +3,7 @@
 #include <iostream>
 
 
+//Абстрактный класс итератора
 template <typename T>
 class Iterator {
 public:

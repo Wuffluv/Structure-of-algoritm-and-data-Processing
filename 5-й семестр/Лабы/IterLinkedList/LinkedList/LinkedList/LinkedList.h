@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//  ласс узла списка
 template <typename T>
 class Node {
 public:
@@ -211,14 +212,13 @@ public:
 			return !(*this == other);
 		}
 	};
-
+// ¬озвращает итератор, указывающий на начало списка
 	Iterator<T> begin() {
-		// ¬озвращает итератор, указывающий на начало списка
 		return Iterator<T>(head);
 	}
 
+	// ¬озвращает итератор, указывающий на конец списка (nullptr)
 	Iterator<T> end() {
-		// ¬озвращает итератор, указывающий на конец списка (nullptr)
 		return Iterator<T>(nullptr);
 	}
 
